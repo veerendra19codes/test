@@ -3,61 +3,7 @@ import { getAllUsers } from '@/lib/actions';
 
 export async function GET() {
 
-    //logic to filter active franchises and send array of emails of active franhcises, let be activeFRranchiseArr
-    // const actIiveFranchisess = sendEmailToActiveFranchises();
-    // const activeFranchiseArr = ["yashkalia4215@gmail.com","veerendragumate@gmail.com"];
-    
-    // sendEmail(activeFranchiseArr);
-     try {
-      const allUsers = await getAllUsers();
-    const admin = allUsers.filter((user) => user.role === "ad");
-    const url = admin[0].deployedlink;
-
-
-    // Fetch data from API or database
-    const response = await fetch(url);
-    const franchises = await response.json();
-
-    const inactiveFranchises = [];
-    const activeFranchises = [];
-
-    for (const franchise in franchises) {
-        const clientStatus = franchises[franchise].clientStatusCounts.activeCount;
-
-        if (clientStatus === 0) {
-        inactiveFranchises.push(franchise);
-        } else {
-        activeFranchises.push(franchise);
-        }
-    }
-
-    console.log('Inactive Franchises:', inactiveFranchises);
-    console.log('Active Franchises:', activeFranchises);
-
-    const activeFranchiseEmails = allUsers
-      .filter(user => activeFranchises.includes(user.username))
-      .map(user => user.email);
-
-    console.log("emails of active franhise:",activeFranchiseEmails);
-        // console.log("activeFranchiseArr:",activeFranchiseArr);
-        // console.log("emails in sendEmail fn:", emails); 
-
-        const emailContent = `
-      <html>
-        <head>
-          <style>
-            /* Add your CSS styles here */
-          </style>
-        </head>
-        <body>
-          <h1>Hello Active Franchises!</h1>
-          <p>This is a test email message to check the email sending functionality.</p>
-          <ul>
-            ${activeFranchiseEmails.map(email => `<li>${email}</li>`).join('')}
-          </ul>
-        </body>
-      </html>
-    `;
+  try {
         var transport = nodemailer.createTransport({
             host: "bulk.smtp.mailtrap.io",
             port: 587,
@@ -73,13 +19,13 @@ export async function GET() {
             bcc: ["veerendragumate@gmail.com","yashkalia4215@gmail.com"],
             subject: "Test Email: This is a Test Message ✔",
             text: "CRON JOBS",
-            // html: "<p>Kindly update your spreadsheet</p>",
-            html: emailContent
+            html: "<p>TEST CRON JOB</p>",
         });
 
         // console.log("Message sent: %s", info.messageId);
         return NextResponse.json({success:"successfully sent email"}, {status: 201})
-    } catch (error) {
+    } 
+    catch (error) {
         // console.error("Error sending email:", error);
         if (error.code === 'ETIMEDOUT') {
             // Handle timeout error, e.g., retry after a delay
