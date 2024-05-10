@@ -61,3 +61,23 @@ export const getAllCompanies = async () => {
         return null;
     }
 }
+
+export const getAllUsers = async () => {
+    try {
+        console.log("getAllUsers is called");
+        connectToDB();
+        
+        const url= `${process.env.NEXTAUTH_URL}/api/user`;
+        const res = await fetch(url, { cache: 'no-store' });
+        // console.log("res:",res.json())
+
+        if (res.status !== 200) {
+            return { error: "Error in getting all users" };
+        }
+        return res.json();
+    }
+    catch (err) {
+        console.log("error in getting all users in actions.js: ", err);
+        return null;
+    }
+}
