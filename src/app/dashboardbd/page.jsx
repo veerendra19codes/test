@@ -22,9 +22,12 @@ const DashboardBD = () => {
     }, [])
     return (
         <ul>
-            {allCompanies.map((c) => (
-                <li key={c.companyname}>{c.companyname}</li>
-            ))}
+            {allCompanies.length > 0 &&
+                allCompanies?.map((c) => (
+                    <li key={c.companyname}>{c.companyname}</li>
+                ))
+            }
+            {allCompanies.length === 0 && <div>Loading...</div>}
         </ul>
     )
 }
