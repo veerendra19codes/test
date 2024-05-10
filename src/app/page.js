@@ -5,7 +5,7 @@ import { useFormState } from "react-dom";
 import { addCompany } from '@/lib/actions';
 import { ToastContainer, toast } from 'react-toastify';
 
-import { useRouter, useServerInsertedHTML } from 'next/navigation';
+import { useRouter} from 'next/navigation';
 import mongoose from 'mongoose';
 
 import 'react-toastify/dist/ReactToastify.css';

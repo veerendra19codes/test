@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server"
-import { getAllUsers } from '@/lib/actions';
 
 export async function GET() {
 
