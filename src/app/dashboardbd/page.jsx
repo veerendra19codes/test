@@ -13,7 +13,7 @@ const DashboardBD = () => {
     useEffect(() => {
         const fetchData = async () => {
             const allC = await getAllCompanies()
-            // console.log("allC:", allC)
+            console.log("allC:", allC)
             // const mycompanies = allC.filter((c) => c.createdBy.toString() === createdBy);
             // console.log("my companies:", mycompanies);
             setAllCompanies(allC)
