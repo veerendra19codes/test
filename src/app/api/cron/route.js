@@ -1,13 +1,17 @@
-
 import { NextResponse } from "next/server"
-
-import fetch from 'node-fetch';
 import { getAllUsers } from '@/lib/actions';
 
-// Define the function to send emails to active franchises
-const sendEmailToActiveFranchises = async () => {
-  try {
-    const allUsers = await getAllUsers();
+export async function GET() {
+
+    //logic to filter active franchises and send array of emails of active franhcises, let be activeFRranchiseArr
+    // const actIiveFranchisess = sendEmailToActiveFranchises();
+    // const activeFranchiseArr = ["yashkalia4215@gmail.com","veerendragumate@gmail.com"];
+    const activeFranchiseArr = await sendEmailToActiveFranchises();
+    console.log("activeFranchiseArr:", activeFranchiseArr);
+
+    // sendEmail(activeFranchiseArr);
+     try {
+      const allUsers = await getAllUsers();
     const admin = allUsers.filter((user) => user.role === "ad");
     const url = admin[0].deployedlink;
 
@@ -37,25 +41,6 @@ const sendEmailToActiveFranchises = async () => {
       .map(user => user.email);
 
     console.log("emails of active franhise:",activeFranchiseEmails);
-    return activeFranchiseEmails;
-  } catch (error) {
-    console.error('Error sending emails:', error);
-  }
-};
-
-// module.exports = { sendEmailToActiveFranchises };
-
-
-export async function GET() {
-
-    //logic to filter active franchises and send array of emails of active franhcises, let be activeFRranchiseArr
-    // const actIiveFranchisess = sendEmailToActiveFranchises();
-    // const activeFranchiseArr = ["yashkalia4215@gmail.com","veerendragumate@gmail.com"];
-    const activeFranchiseArr = await sendEmailToActiveFranchises();
-    console.log("activeFranchiseArr:", activeFranchiseArr);
-
-    // sendEmail(activeFranchiseArr);
-     try {
         // console.log("activeFranchiseArr:",activeFranchiseArr);
         // console.log("emails in sendEmail fn:", emails); 
 
@@ -70,7 +55,7 @@ export async function GET() {
           <h1>Hello Active Franchises!</h1>
           <p>This is a test email message to check the email sending functionality.</p>
           <ul>
-            ${activeFranchiseArr.map(email => `<li>${email}</li>`).join('')}
+            ${activeFranchiseEmails.map(email => `<li>${email}</li>`).join('')}
           </ul>
         </body>
       </html>
@@ -89,7 +74,7 @@ export async function GET() {
             to: "me@gmail.com",
             bcc: ["veerendragumate@gmail.com","yashkalia4215@gmail.com"],
             subject: "Test Email: This is a Test Message ✔",
-            text: "This is a test email message to check the email sending functionality from alert",
+            text: "CRON JOBS",
             // html: "<p>Kindly update your spreadsheet</p>",
             html: emailContent
         });
