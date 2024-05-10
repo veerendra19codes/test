@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 
 export async function GET() {
-
+// console.log("hello bro")
   try {
         var transport = nodemailer.createTransport({
             host: "bulk.smtp.mailtrap.io",
@@ -21,7 +21,7 @@ export async function GET() {
             text: "CRON JOBS",
             html: "<p>TEST CRON JOB</p>",
         });
-
+        // console.log("info:", info);
         // console.log("Message sent: %s", info.messageId);
         return NextResponse.json({success:"successfully sent email"}, {status: 201})
     } 

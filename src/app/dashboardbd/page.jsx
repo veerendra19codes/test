@@ -6,20 +6,20 @@ import mongoose from 'mongoose';
 
 const DashboardBD = () => {
     const [allCompanies, setAllCompanies] = useState([]);
-    console.log("allcompanies:", allCompanies)
-    const userId = "6631248f03003d3a90a871cc";
-    const createdBy = new mongoose.Types.ObjectId(userId).toString();
+    // console.log("allcompanies:", allCompanies)
+    // const userId = "6631248f03003d3a90a871cc";
+    // const createdBy = new mongoose.Types.ObjectId(userId).toString();
 
     useEffect(() => {
         const fetchData = async () => {
             const allC = await getAllCompanies()
-            console.log("allC:", allC)
-            const mycompanies = allC.filter((c) => c.createdBy.toString() === createdBy);
-            console.log("my companies:", mycompanies);
-            setAllCompanies(mycompanies)
+            // console.log("allC:", allC)
+            // const mycompanies = allC.filter((c) => c.createdBy.toString() === createdBy);
+            // console.log("my companies:", mycompanies);
+            setAllCompanies(allC)
         }
         fetchData();
-    }, [createdBy])
+    }, [])
     return (
         <ul>
             {allCompanies.map((c) => (

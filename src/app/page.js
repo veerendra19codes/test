@@ -12,10 +12,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = () => {
     const router = useRouter();
-    const userId = "6631248f03003d3a90a871cc";
+    const userId = "663e69a8cdec7366ee78456b";
     const createdBy = new mongoose.Types.ObjectId(userId); 
-    console.log("userId:", userId);
-    console.log("createdBy:",createdBy);
+    // console.log("userId:", userId);
+    // console.log("createdBy:",createdBy);
 
     const [info, setInfo] = useState({ companyname: "", jobdetails: "",createdBy });
     
