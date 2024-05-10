@@ -6,9 +6,7 @@ export async function GET() {
     //logic to filter active franchises and send array of emails of active franhcises, let be activeFRranchiseArr
     // const actIiveFranchisess = sendEmailToActiveFranchises();
     // const activeFranchiseArr = ["yashkalia4215@gmail.com","veerendragumate@gmail.com"];
-    const activeFranchiseArr = await sendEmailToActiveFranchises();
-    console.log("activeFranchiseArr:", activeFranchiseArr);
-
+    
     // sendEmail(activeFranchiseArr);
      try {
       const allUsers = await getAllUsers();
